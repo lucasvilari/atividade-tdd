@@ -33,4 +33,4 @@ class Pedido:
 
 
 def contar_frete_gratis(pedidos: list) -> int:
-    return 0
+    return len(pedidos)
