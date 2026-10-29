@@ -74,6 +74,10 @@ def test_req1_lista_mista(pedido_pequeno, pedido_grande):
 # Requisito 2 — situacao(unidades_indisponiveis) -> str
 # Escreva os testes ANTES de implementar o método
 
+def test_req2_tudo_disponivel_abaixo_de_50_confirmado(pedido_pequeno):
+    # pedido_pequeno: 15,00, sem frete grátis
+    assert pedido_pequeno.situacao(0) == "Confirmado"
+
 
 
 # Requisito 3 — sugerir_frete_gratis(sms_service) -> None
