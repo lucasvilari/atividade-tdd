@@ -113,3 +113,12 @@ def test_req3_abaixo_de_50_envia_sms_com_valor_faltante(pedido_pequeno):
     pedido_pequeno.sugerir_frete_gratis(sms_service)
 
     sms_service.enviar.assert_called_once_with("Bruno", 35.0)
+
+
+def test_req3_acima_de_50_nao_envia_sms(pedido_grande):
+    # pedido_grande: 73,00 -> já tem frete grátis
+    sms_service = MagicMock()
+
+    pedido_grande.sugerir_frete_gratis(sms_service)
+
+    sms_service.enviar.assert_not_called()
