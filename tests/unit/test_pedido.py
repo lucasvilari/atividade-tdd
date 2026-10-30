@@ -132,3 +132,13 @@ def test_req3_exatamente_50_nao_envia_sms():
     pedido.sugerir_frete_gratis(sms_service)
 
     sms_service.enviar.assert_not_called()
+
+
+def test_req3_valor_faltante_em_centavos():
+    # 50,00 - 49,99 = 0,01 (sem resíduo de ponto flutuante)
+    pedido = Pedido("Carla", [Item("Combo", 49.99, 1)])
+    sms_service = MagicMock()
+
+    pedido.sugerir_frete_gratis(sms_service)
+
+    sms_service.enviar.assert_called_once_with("Carla", 0.01)
