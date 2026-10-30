@@ -122,3 +122,13 @@ def test_req3_acima_de_50_nao_envia_sms(pedido_grande):
     pedido_grande.sugerir_frete_gratis(sms_service)
 
     sms_service.enviar.assert_not_called()
+
+
+def test_req3_exatamente_50_nao_envia_sms():
+    # valor-limite: 50,00 já tem frete grátis
+    pedido = Pedido("Carla", [Item("Combo", 50.0, 1)])
+    sms_service = MagicMock()
+
+    pedido.sugerir_frete_gratis(sms_service)
+
+    sms_service.enviar.assert_not_called()
